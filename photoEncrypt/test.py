@@ -1,60 +1,30 @@
-from PIL import Image as image
-from tkinter import *
-from tkinter import messagebox
-from tkinter import filedialog
-Password = 0
+import tkinter as tk
 
-root = Tk()
+app = tk.Tk() 
 
-def __name():
-    a=3;
-    
-"""
-def PhotoBinarization(photoDir):
-    im = image.open(photoDir)
-    pixel = im.load()
-    x,y = im.size
+labelWidth = tk.Label(app,
+                    text = "Width Ratio")
+labelWidth.grid(column=0, row=0, ipadx=5, pady=5, sticky=tk.W+tk.N)
 
-    for i in range(x):
-        for j in range(y):
-            tmp=0
-            R,G,B = pixel[i,j]
-            tmp |= R << (8 * 2)
-            tmp |= G << (8 * 1)
-            tmp |= B << (8 * 0)
-            tmp ^= Password
-            tmp ^= Password 
-            encryptedR = 255 & (tmp >> (8 * 2))
-            encryptedG = 255 & (tmp >> 8 )
-            encryptedB = 255 & tmp
-            pixel[i,j] = (encryptedR , encryptedG , encryptedB)
-    im.save(photoDir[:-4]+"_encryped.png")
-    
-          
-
-"""
-def IsPSBClicked():
-    name = txt.get()
-    photoDir = filedialog.askopenfile(initialdir='path', title='사진을 선택하세요', filetypes=(('JPEG files', '*.jpg') , ('PNG files', '*.png'), ('ALL files', '*.*')))
-
-    if photoDir !=None :
-        name = txt.get()
-        messagebox.showinfo("", "사진을 로드했습니다.")
-        return photoDir.name
-    
-    
+labelHeight = tk.Label(app,
+                    text = "Height Ratio")
+labelHeight.grid(column=0, row=1, ipadx=5, pady=5, sticky=tk.W+tk.S)
 
 
-lbl = Label(root, text="이름")
-lbl.grid(row=0, column=0)
+entryWidth = tk.Entry(app, width=20)
+entryHeight = tk.Entry(app, width=20)
 
-txt = Entry(root)
-txt.grid(row=0, column=1)
+entryWidth.grid(column=1, row=0, padx=10, pady=5, sticky=tk.N)
+entryHeight.grid(column=1, row=1, padx=10, pady=5, sticky=tk.S)
 
-photoDir = ""
-PhotoSelctButton = Button(root, text = "사진을 선택하세요" , command  =IsPSBClicked() )
 
-print(photoDir)
-PhotoSelctButton.grid(row=1, column=1)
+resultButton = tk.Button(app, text = 'Get Result')
+resultButton.grid(column=0, row=2, pady=10, sticky=tk.W)
 
-root.mainloop()
+logo = tk.PhotoImage(file='python.gif')
+labelLogo = tk.Label(app, image=logo)
+
+labelLogo.grid(row=0, column=2, columnspan=2, rowspan=2,
+               sticky=tk.W+tk.E+tk.N+tk.S, padx=5, pady=5)
+
+app.mainloop()
